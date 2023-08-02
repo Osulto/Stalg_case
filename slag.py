@@ -1,20 +1,23 @@
+with open("machine_definition.txt", "r") as file:
+    line = file.readline()
+
+states = line.strip().split(',')
+states_values = states
+
 def two_way_automaton(input_string):
     current_state = 'q0'
     index = 0
-    #count_0 = 0
-    #count_1 = 0
-
-
+    stack = ['Z']
+    counts = {0: 0, 1: 0}
     while True:
         if current_state == 'q0':
             if index < len(input_string):
                 symbol = input_string[index]
                 if symbol == '0':
-                    #count_0 += 1
                     index += 1
+                    stack.append('0')
                     print(current_state, index)
                 elif symbol == '1':
-                    #count_1 += 1
                     index += 1
                     current_state = 'q1'
                     print(current_state, index)
@@ -27,11 +30,9 @@ def two_way_automaton(input_string):
             if index < len(input_string):
                 symbol = input_string[index]
                 if symbol == '0':
-                    #count_0 += 1
                     index += 1
                     print(current_state, index)
                 elif symbol == '1':
-                    #count_1 += 1
                     index -= 1
                     current_state = 'q2'
                     print(current_state, index)
@@ -48,7 +49,6 @@ def two_way_automaton(input_string):
                     current_state = 'q0'
                     print(current_state, index)
                 elif symbol == '1':
-                    #count_1 += 1
                     index -= 1
                     print(current_state, index)
                 else:
