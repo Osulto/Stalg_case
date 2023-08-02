@@ -6,7 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="f1020c93-bbf2-4657-bfb0-a0e2941ead2a" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/machine_definition.txt" beforeDir="false" afterPath="$PROJECT_DIR$/machine_definition.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/slag.py" beforeDir="false" afterPath="$PROJECT_DIR$/slag.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

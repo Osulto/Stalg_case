@@ -15,12 +15,10 @@ def two_way_automaton(input_string):
                 symbol = input_string[index]
                 if symbol == '0':
                     index += 1
-                    stack.append('0')
-                    print(current_state, index)
+                    stack.append('X')
+                    print(current_state, index, stack)
                 elif symbol == '1':
-                    index += 1
                     current_state = 'q1'
-                    print(current_state, index)
                 else:
                     return False
             else:
@@ -29,13 +27,14 @@ def two_way_automaton(input_string):
         elif current_state == 'q1':
             if index < len(input_string):
                 symbol = input_string[index]
-                if symbol == '0':
+                if symbol == '1':
                     index += 1
-                    print(current_state, index)
-                elif symbol == '1':
-                    index -= 1
+                    stack.pop()
+                    print(current_state, index, stack)
+                elif symbol == '2':
+                    index = len(input_string)-1
                     current_state = 'q2'
-                    print(current_state, index)
+                    print(current_state, index, stack)
                 else:
                     return False
             else:
@@ -44,18 +43,35 @@ def two_way_automaton(input_string):
         elif current_state == 'q2':
             if index < len(input_string):
                 symbol = input_string[index]
-                if symbol == '0':
-                    index += 1
-                    current_state = 'q0'
-                    print(current_state, index)
-                elif symbol == '1':
+                if symbol == '2':
                     index -= 1
-                    print(current_state, index)
+                    stack.append('X')
+                    print(current_state, index, stack)
+                elif symbol == '1':
+                    current_state = 'q3'
+                    #print(current_state, index, stack)
                 else:
                     return False
             else:
                 break
-    return current_state == 'q1' and index == len(input_string)
+
+        elif current_state == 'q3':
+            if index < len(input_string):
+                symbol = input_string[index]
+                if symbol == '1':
+                    index -= 1
+                    stack.pop()
+                    print(current_state, index, stack)
+                elif symbol == '0' and len(stack) == 1:
+                    print(current_state, index, stack)
+                    return True
+                else:
+                    return False
+            else:
+                break
+
+   #return current_state == 'q1' and index == len(input_string)
+    #return stack[0] == 'Z' and index == 2
 
 
 # Main code to test the automaton
