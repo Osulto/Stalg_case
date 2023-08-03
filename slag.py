@@ -23,28 +23,37 @@ def two_way_automaton(input_string):
         nxtstate = trans[4]
         push = trans[5]
 
+
         if current_state == nxtstate:
             next = nxtstate
         else:
             next = current_state
 
-        if next == current_state :
+        if next == current_state:
+            print('next:', next, 'current:', current_state)
+
             if index < len(input_string):
+                print('index:', index, 'string length:', len(input_string))
                 symbol = input_string[index]
+                print('symbol:', symbol, 'read:', read)
                 if symbol == read:
                     if pop != '@':
                         stack.pop()
+
                     if direction == '1':
                         index += 1
+                        symbol = input_string[index]
                     elif direction == '0':
                         index = index
+                        symbol = input_string[index]
                     elif direction == '-1':
                         index -= 1
-
+                        symbol = input_string[index]
 
                     if push != '@':
                         stack.append(push)
-            print(current_state, index, stack)
+
+                    #print(current_state, index, stack, symbol)
 
     """
     print('next:',next,'\n','current state:', current_state)
