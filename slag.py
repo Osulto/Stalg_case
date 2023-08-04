@@ -5,76 +5,76 @@ with open("machine_definition.txt", "r") as file:
     final = file.readline()
     transition = [line.strip().split(',') for line in file]
 
-
 states = states.strip().split(',')
 inputs = inputs.strip().split(',')
-
-
-
 def two_way_automaton(input_string):
     current_state = 'q0'
-    index = 0
     stack = ['Z']
+    index = 0
+
     for trans in transition:
-        current_state = trans[0]
+
         read = trans[1]
+        current_state = trans[0]
         pop = trans[2]
         direction = trans[3]
         nxtstate = trans[4]
         push = trans[5]
-
 
         if current_state == nxtstate:
             next = nxtstate
         else:
             next = current_state
 
-        if next == current_state:
-            print('next:', next, 'current:', current_state)
+        symbol = input_string[index]
 
-            if index < len(input_string):
-                print('index:', index, 'string length:', len(input_string))
-                symbol = input_string[index]
-                print('symbol:', symbol, 'read:', read)
-                if symbol == read:
-                    if pop != '@':
-                        stack.pop()
-
-                    if direction == '1':
-                        index += 1
-                        symbol = input_string[index]
-                    elif direction == '0':
-                        index = index
-                        symbol = input_string[index]
-                    elif direction == '-1':
-                        index -= 1
-                        symbol = input_string[index]
-
-                    if push != '@':
-                        stack.append(push)
-
-                    #print(current_state, index, stack, symbol)
-
-    """
-    print('next:',next,'\n','current state:', current_state)
-            if current_state == 'q0':
-                if index < len(input_string):
-                    symbol = input_string[index]
-                    if symbol == '0':
-                        index += 1
-                        stack.append('X')
-                        print(current_state, index, stack)
-                    elif symbol == '1':
-                        current_state = 'q1'
-                    else:
-                        return False
-                else:
-                    break
-            """
+        if index < len(input_string) :
+            print('before', symbol)
+            if index != len(input_string)-1:
+                index += 1
+            print('after:', symbol)
 
 
 
 
+
+
+
+
+
+
+
+
+
+    """""""""
+    if next == current_state:
+        while index < len(input_string):
+            symbol = input_string[index]
+            print('symbol:', symbol)
+            print('read', read)
+            print('index', index)
+            print('===========================')
+            if symbol != read:
+                break
+            else:
+                if pop != '@':
+                    print('POP')
+                    stack.pop()
+
+                if direction == '1':
+                    index += 1
+
+                elif direction == '0':
+                    index = index
+
+                elif direction == '-1':
+                    index -= 1
+
+                if push != '@':
+                    stack.append(push)
+
+        print('state:', current_state, stack)
+"""""""""
 
 # Main code to test the automaton
 if __name__ == "__main__":
