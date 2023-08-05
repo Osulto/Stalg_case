@@ -27,12 +27,42 @@ def two_way_automaton(input_string):
             next = current_state
 
         symbol = input_string[index]
-
+        """
         if index < len(input_string) :
             print('before', symbol)
             if index != len(input_string)-1:
                 index += 1
             print('after:', symbol)
+        """
+        while symbol == read and index < len(input_string):
+            symbol = input_string[index]
+            print('state', current_state, 'index:', index, 'symbol', symbol, 'read', read)
+            print(stack)
+            print('============')
+            if index < len(input_string):
+
+                if direction == 'R':
+                    index += 1
+                elif direction == 'L':
+                    print('LEFT')
+                    index -= 1
+                elif direction == '0':
+                    print('STAY')
+                    index = index
+
+                if pop != '@':
+                    print('POP')
+                    stack.pop()
+
+                if push != '@' and symbol == read:
+                    stack.append(push)
+
+            else:
+                print('break')
+                break
+
+
+
 
 
 
