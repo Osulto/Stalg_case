@@ -55,18 +55,9 @@ def two_way_automaton(input_string):
 
 # Main code to test the automaton
 if __name__ == "__main__":
-    input_string = input("Enter a string consisting of 0's and 1's \n put a '>' by the end of it: ")
+    print('L = {0^n 1^n 2^n}')
+    input_string = input("Enter a string consisting of 0's, 1's and 2's. Put a '>' by the end of it:\n")
     if two_way_automaton(input_string):
         print("[ACCEPTED STRING]")
     else:
         print("[INVALID STRING]")
-
-"""""
-Text File Format:
-States: q0,q1,q2,q3
-Inputs: 0,1
-Initial State: q0
-Final State: q3
-Transitions q0,0,@,R,q0,X:
-Current State | Read | Pop | Direction | Next State | Push
-"""""
